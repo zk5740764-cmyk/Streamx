@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>StreamX &ndash; Watch, listen and download on Android</title>
-<meta name="description" content="StreamX is a fast Android app for videos, music and Shorts with a built-in downloader, in-app browser, country-based content and 56 languages. Download StreamX 1.13 APK.">
+<meta name="description" content="StreamX is a fast Android app for videos, music and Shorts with a built-in downloader, in-app browser, country-based content and 56 languages. Download StreamX 1.17 APK.">
 <meta name="theme-color" content="#07070d">
 <meta property="og:type" content="website">
 <meta property="og:title" content="StreamX &ndash; Watch, listen and download on Android">
-<meta property="og:description" content="StreamX is a fast Android app for videos, music and Shorts with a built-in downloader, in-app browser, country-based content and 56 languages. Download StreamX 1.13 APK.">
+<meta property="og:description" content="StreamX is a fast Android app for videos, music and Shorts with a built-in downloader, in-app browser, country-based content and 56 languages. Download StreamX 1.17 APK.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%238b5cf6'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Cpath d='M25 18l22 14-22 14z' fill='white'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -221,6 +221,101 @@ html{scroll-padding-top:84px}
 .page-hero h2{font-size:clamp(2.3rem,5.6vw,4rem);line-height:1.1;font-weight:800;letter-spacing:-.02em}
 .page-block+.page-block{border-top:1px solid var(--line);margin-top:20px}
 .main-nav a.active:not(.btn){color:#fff;background:var(--card2)}
+
+/* watch + api */
+.w-app{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.w-search{width:100%;padding:12px 18px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--text);font:inherit;font-size:.95rem;outline:0;margin-bottom:14px}
+.w-search:focus{border-color:var(--violet)}
+.w-hero{position:relative;aspect-ratio:21/9;min-height:180px;border-radius:16px;overflow:hidden;margin-bottom:14px;cursor:pointer;background:var(--grad)}
+.w-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.w-hs{position:absolute;inset:auto 0 0 0;padding:44px 18px 16px;background:linear-gradient(transparent,rgba(0,0,0,.88))}
+.w-hs h3{font-size:1.1rem;line-height:1.3;max-width:640px;margin:8px 0 2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.w-hs p{color:#ffffffcc;font-size:.85rem;margin-bottom:10px}
+.w-tag{display:inline-block;background:var(--grad);font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:999px;letter-spacing:.08em}
+.w-chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:14px}
+.w-chip{flex:none;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--text);border-radius:999px;padding:8px 16px;font:inherit;font-size:.85rem;font-weight:500;cursor:pointer;text-transform:capitalize;transition:.2s}
+.w-chip:hover{background:var(--card2)}.w-chip.on{background:var(--grad);border-color:transparent;color:#fff}
+.w-grid{display:grid;grid-template-columns:1fr;gap:22px 14px}
+@media(min-width:600px){.w-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:960px){.w-grid{grid-template-columns:repeat(3,1fr)}}
+.w-card{cursor:pointer}
+.w-th{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:rgba(255,255,255,.06)}
+.w-th img{width:100%;height:100%;object-fit:cover;transition:transform .3s}.w-card:hover .w-th img{transform:scale(1.05)}
+.w-dur{position:absolute;right:8px;bottom:8px;background:rgba(0,0,0,.8);font-size:.7rem;font-weight:600;padding:2px 7px;border-radius:6px}
+.w-row{display:flex;gap:10px;margin-top:10px}
+.w-av{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;flex:none;font-weight:700}
+.w-row b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:.88rem;line-height:1.4;font-weight:600}
+.w-row span{font-size:.78rem;color:var(--muted)}
+.w-sk{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(90deg,rgba(255,255,255,.05),rgba(255,255,255,.11),rgba(255,255,255,.05));background-size:200% 100%;animation:wsh 1.2s infinite}
+@keyframes wsh{to{background-position:-200% 0}}
+.w-back{border:0;background:var(--grad);color:#fff;font:inherit;font-weight:600;font-size:.9rem;padding:9px 20px;border-radius:999px;cursor:pointer;margin-bottom:14px}
+.w-watch{display:grid;gap:20px}
+@media(min-width:900px){.w-watch{grid-template-columns:1fr 340px}}
+.w-player{position:relative;aspect-ratio:16/9;background:#000;border-radius:16px;overflow:hidden}
+.w-player iframe,.w-player img{position:absolute;inset:0;width:100%;height:100%;border:0;object-fit:cover}
+.w-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:72px;height:72px;border-radius:50%;border:0;background:var(--grad);color:#fff;font-size:1.6rem;cursor:pointer;box-shadow:0 10px 30px -8px rgba(139,92,246,.8)}
+#wTitle{margin:14px 0 10px;font-size:1.15rem;line-height:1.4}
+.w-chan{display:flex;align-items:center;gap:10px;font-weight:600}
+.w-watch h4{margin-bottom:12px}
+.w-vid{display:flex;gap:10px;margin-bottom:12px;cursor:pointer}
+.w-vid .w-th{width:140px;flex:none;border-radius:10px}
+.w-vid b{font-size:.82rem;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.w-vid span{font-size:.72rem;color:var(--muted)}
+.w-msg{grid-column:1/-1;text-align:center;color:var(--muted);padding:30px 0}
+.w-foot{margin-top:18px;text-align:center;font-size:.8rem;color:var(--muted)}
+.w-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#2ecc71;margin-right:6px}.w-dot.off{background:#e74c3c}
+.w-doc h3{margin:24px 0 8px;font-size:1.05rem}.w-doc h3:first-child{margin-top:0}
+.w-doc p{margin-bottom:8px}
+.w-doc table{width:100%;border-collapse:collapse;font-size:.85rem;margin:8px 0}
+.w-doc th,.w-doc td{text-align:left;padding:8px;border-bottom:1px solid var(--line)}.w-doc th{color:var(--muted)}
+.w-doc code{background:rgba(139,92,246,.18);color:var(--cyan);padding:1px 6px;border-radius:6px;font-size:.8rem;word-break:break-all}
+.w-doc ol{padding-left:20px;color:var(--muted)}.w-doc li{margin:6px 0}
+.w-code{background:rgba(0,0,0,.35);border:1px solid var(--line);border-radius:12px;padding:14px;overflow-x:auto;font-size:.78rem;line-height:1.6;font-family:'Courier New',monospace;margin:8px 0}
+.w-codehead{display:flex;justify-content:space-between;align-items:center;margin-top:10px;color:var(--muted);font-size:.8rem}
+.w-copy{border:1px solid var(--line);background:var(--card2);color:var(--text);border-radius:999px;padding:5px 14px;font:inherit;font-size:.78rem;cursor:pointer}
+
+.w-chip small{opacity:.75;margin-left:4px;font-size:.72rem}
+.w-tabs{display:flex;gap:8px;overflow-x:auto;margin:12px 0 16px}
+.w-tab{flex:none;border:1px solid var(--line);background:var(--card2);color:var(--text);border-radius:999px;padding:8px 16px;font:inherit;font-size:.85rem;font-weight:500;cursor:pointer}
+.w-tab.on{background:var(--grad);border-color:transparent;color:#fff}
+.w-pane{display:none}.w-pane.on{display:block}
+.w-codedocs h2{margin:18px 0 8px;font-size:1rem}.w-codedocs h2:first-child{margin-top:0}
+.w-codedocs p{margin-bottom:8px}
+.w-codedocs table{width:100%;border-collapse:collapse;font-size:.85rem;margin:8px 0}
+.w-codedocs th,.w-codedocs td{text-align:left;padding:8px;border-bottom:1px solid var(--line)}
+.w-codedocs code{background:rgba(139,92,246,.18);color:var(--cyan);padding:1px 6px;border-radius:6px;font-size:.8rem;word-break:break-all}
+.w-codedocs .block{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:14px;overflow:hidden}
+.w-codedocs .block-head{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;border-bottom:1px solid var(--line);font-size:.78rem;color:var(--muted)}
+.w-codedocs .copy-btn{border:1px solid var(--line);background:var(--card2);color:var(--text);border-radius:999px;padding:4px 14px;font:inherit;font-size:.78rem;cursor:pointer}
+.w-codedocs pre,.w-codedocs .plainpre{margin:0 0 12px;padding:14px;overflow-x:auto;font:.78rem/1.6 'Courier New',monospace}
+.w-codedocs .block pre{margin:0}
+.w-codedocs .steps{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.w-codedocs .step{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+.w-codedocs .step b{width:26px;height:26px;border-radius:50%;background:var(--grad);display:inline-grid;place-items:center;flex:none;font-size:.8rem;color:#fff}
+.w-codedocs .step p{margin:2px 0 0}
+.w-theme{margin-left:auto;margin-right:8px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--card2);color:var(--text);cursor:pointer;font-size:1.05rem;flex:none}
+:root[data-theme="light"]{--bg:#f7f5ff;--bg2:#ece8fb;--card:rgba(20,10,60,.045);--card2:rgba(20,10,60,.08);--line:rgba(20,10,60,.13);--text:#1b1530;--muted:#5d5873}
+:root[data-theme="light"] .site-header{background:rgba(247,245,255,.85)}
+:root[data-theme="light"] .main-nav.open{background:rgba(247,245,255,.98)}
+:root[data-theme="light"] .site-footer{background:rgba(20,10,60,.04)}
+:root[data-theme="light"] .phone,:root[data-theme="light"] .cta-inner,:root[data-theme="light"] .dl-card{border-color:var(--line)}
+:root[data-theme="light"] .section.alt{background:linear-gradient(180deg,transparent,rgba(20,10,60,.03),transparent)}
+:root[data-theme="light"] .w-search,:root[data-theme="light"] .w-chip{background:rgba(20,10,60,.05)}
+:root[data-theme="light"] .w-code{background:rgba(20,10,60,.05)}
+
+.w-new{background:var(--card2);border-color:var(--cyan);color:var(--text);box-shadow:0 0 0 0 rgba(34,211,238,.5);animation:wpulse 2s infinite}
+.w-new b{background:var(--grad);color:#fff;font-size:.65rem;padding:2px 8px;border-radius:999px;letter-spacing:.08em}
+@keyframes wpulse{70%{box-shadow:0 0 0 12px rgba(34,211,238,0)}100%{box-shadow:0 0 0 0 rgba(34,211,238,0)}}
+
+/* fixes: feature list layout, brand gap, light-mode text */
+.ticks li{display:block;position:relative;padding-left:28px;overflow-wrap:anywhere}
+.ticks .ic{position:absolute;left:0;top:5px}
+.feature>div{min-width:0}
+.brand{gap:0}.brand-mark{margin-right:10px}
+:root[data-theme="light"] .ticks li{color:var(--text)}
+:root[data-theme="light"] .cta-inner p,:root[data-theme="light"] .foot-grid div>a:not(.brand){color:var(--muted)}
+:root[data-theme="light"] .nav-toggle span{background:var(--text)}
+:root[data-theme="light"] .main-nav a:not(.btn):hover,:root[data-theme="light"] .main-nav a.active,:root[data-theme="light"] .main-nav a.active:not(.btn),:root[data-theme="light"] .chip:hover{color:var(--text)}
 </style>
 <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
 </head>
@@ -229,8 +324,9 @@ html{scroll-padding-top:84px}
 <header class="site-header">
   <div class="wrap header-row">
     <a class="brand" href="#home" aria-label="StreamX home"><span class="brand-mark"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg></span>Stream<b>X</b></a>
+    <button class="w-theme" id="wTheme" aria-label="Dark or light mode">&#127763;</button>
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav class="main-nav" aria-label="Main"><a href="#home">Home</a><a href="#features">Features</a><a href="#screenshots">Screenshots</a><a href="#download">Download</a><a href="#about">About & Community</a><a class="btn btn-sm nav-cta" href="https://github.com/zk5740764-cmyk/NeonPlayer-/releases/download/V1.13/StreamX_1.13.apk"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Get APK</a></nav>
+    <nav class="main-nav" aria-label="Main"><a href="#home">Home</a><a href="#features">Features</a><a href="#screenshots">Screenshots</a><a href="#watch">Watch</a><a href="#api">API</a><a href="#download">Download</a><a href="#about">About & Community</a><a class="btn btn-sm nav-cta" href="https://github.com/zk5740764-cmyk/NeonPlayer-/releases/download/V1.17/StreamX_1.17.apk"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Get APK</a></nav>
   </div>
 </header>
 <main>
@@ -239,12 +335,13 @@ html{scroll-padding-top:84px}
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-text">
-      <span class="pill reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Version 1.13 is out</span>
+      <span class="pill reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Version 1.17 is out</span>
       <h1 class="reveal">Watch. Listen.<br><span class="grad">Download.</span><br>All in StreamX.</h1>
       <p class="lead reveal">A fast Android app for videos, music and Shorts with a built-in downloader, an in-app browser, content that matches your country and 56 app languages.</p>
       <div class="hero-btns reveal">
-        <a class="btn btn-lg" href="https://github.com/zk5740764-cmyk/NeonPlayer-/releases/download/V1.13/StreamX_1.13.apk"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download APK</a>
+        <a class="btn btn-lg" href="https://github.com/zk5740764-cmyk/NeonPlayer-/releases/download/V1.17/StreamX_1.17.apk"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download APK</a>
         <a class="btn btn-ghost btn-lg" href="#features">Explore features</a>
+      <a class="btn btn-lg w-new" href="#watch"><b>NEW</b> Watch &amp; API</a>
       </div>
       <ul class="hero-points reveal">
         <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Free download</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Android 7.0+</li><li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> No account needed to start</li>
@@ -262,7 +359,7 @@ html{scroll-padding-top:84px}
   <div class="stat reveal"><b>56</b><span>App languages</span></div>
   <div class="stat reveal"><b>3-in-1</b><span>Videos &middot; Music &middot; Shorts</span></div>
   <div class="stat reveal"><b>Any</b><span>Country-based content</span></div>
-  <div class="stat reveal"><b>1.13</b><span>Latest version</span></div>
+  <div class="stat reveal"><b>1.17</b><span>Latest version</span></div>
 </div></section>
 
 <section class="section"><div class="wrap">
@@ -274,7 +371,7 @@ html{scroll-padding-top:84px}
 </div></section>
 
 <section class="section alt"><div class="wrap">
-  <div class="section-head reveal"><span class="eyebrow">A look inside</span><h2>Clean, fast and easy to use</h2><p class="muted">Real screens from StreamX 1.13.</p></div>
+  <div class="section-head reveal"><span class="eyebrow">A look inside</span><h2>Clean, fast and easy to use</h2><p class="muted">Real screens from StreamX 1.17.</p></div>
   <div class="phones-row">
     <figure class="reveal"><div class="phone"><span class="notch"></span><img class="shot-img" data-img="home" alt="StreamX home screen" width="720" height="1594" loading="lazy" onerror="this.classList.add('broken')"></div><figcaption>Home</figcaption></figure>
     <figure class="reveal"><div class="phone"><span class="notch"></span><img class="shot-img" data-img="music" alt="StreamX music screen" width="720" height="1594" loading="lazy" onerror="this.classList.add('broken')"></div><figcaption>Music</figcaption></figure>
@@ -311,21 +408,666 @@ html{scroll-padding-top:84px}
 <section class="page-hero"><div class="wrap">
   <span class="eyebrow reveal">Screenshots</span>
   <h2 class="reveal">See StreamX in action</h2>
-  <p class="lead reveal">Tap any screen to view it full size. These are real screenshots from StreamX 1.13.</p>
+  <p class="lead reveal">Tap any screen to view it full size. These are real screenshots from StreamX 1.17.</p>
 </div></section>
 <div class="wrap gallery"><section class="shot-row  reveal"><button class="shot" data-index="0" aria-label="View Home screenshot full size"><div class="phone"><span class="notch"></span><img class="shot-img" data-img="home" alt="StreamX home screen" width="720" height="1594" loading="lazy" onerror="this.classList.add('broken')"></div></button><div class="shot-text"><span class="eyebrow">Home</span><h2>Your feed, with Shorts one tap away</h2><p class="muted">Category chips sit at the top, thumbnails are big and clear, and a Shorts button waits in the corner. Every video has its own download button and a + button to add it to a playlist.</p></div></section><section class="shot-row flip reveal"><button class="shot" data-index="1" aria-label="View Music screenshot full size"><div class="phone"><span class="notch"></span><img class="shot-img" data-img="music" alt="StreamX music screen" width="720" height="1594" loading="lazy" onerror="this.classList.add('broken')"></div></button><div class="shot-text"><span class="eyebrow">Music</span><h2>Music that plays your way</h2><p class="muted">Switch between Top Charts, New Releases and Trending, tap a singer from the Artists row, or hit Play all on Quick picks for instant listening.</p></div></section><section class="shot-row  reveal"><button class="shot" data-index="2" aria-label="View Downloads screenshot full size"><div class="phone"><span class="notch"></span><img class="shot-img" data-img="downloads" alt="StreamX downloads screen" width="720" height="1594" loading="lazy" onerror="this.classList.add('broken')"></div></button><div class="shot-text"><span class="eyebrow">Downloads</span><h2>Everything you saved, in one place</h2><p class="muted">See the quality and file size of each download (up to 2160P), share or delete with one tap and filter by All, Videos or Audio. Hot Sites and Hot Videos sit right below.</p></div></section><section class="shot-row flip reveal"><button class="shot" data-index="3" aria-label="View Settings screenshot full size"><div class="phone"><span class="notch"></span><img class="shot-img" data-img="settings" alt="StreamX settings screen" width="720" height="1594" loading="lazy" onerror="this.classList.add('broken')"></div></button><div class="shot-text"><span class="eyebrow">Settings</span><h2>Accounts, browser and categories</h2><p class="muted">Sign in, connect Facebook and Instagram, open the built-in browser with tabs, bookmarks, history and video download, and browse video categories like Movies and Bollywood.</p></div></section></div>
+</div>
+<div id="watch" class="page-block">
+
+<section class="page-hero"><div class="wrap">
+  <span class="eyebrow reveal">Watch</span>
+  <h2 class="reveal">Watch videos right here</h2>
+  <p class="lead reveal">Browse categories and play videos on this page. It runs on the same StreamX API.</p>
+</div></section>
+<section class="section tight"><div class="wrap">
+  <div class="w-app">
+    <input id="wq" class="w-search" placeholder="Search videos">
+    <div id="wList">
+      <div class="w-hero" id="wHero"></div>
+      <div class="w-chips" id="wChips"></div>
+      <div class="w-grid" id="wGrid"></div>
+    </div>
+    <div id="wWatch" hidden>
+      <button class="w-back" id="wBack">&larr; Back</button>
+      <div class="w-watch">
+        <div><div id="wPlayer"></div><h3 id="wTitle"></h3><div class="w-chan"><span id="wAvBox"></span><span id="wMeta"></span></div></div>
+        <div><h4>Up next</h4><div id="wNext"></div></div>
+      </div>
+    </div>
+    <div class="w-foot" id="wStat"><i class="w-dot off"></i>Connecting to API...</div>
+  </div>
+</div></section>
+</div>
+<div id="api" class="page-block">
+
+<section class="page-hero"><div class="wrap">
+  <span class="eyebrow reveal">API</span>
+  <h2 class="reveal">Use the StreamX API in your own site</h2>
+  <p class="lead reveal">Free JSON. No API key. Two requests are all you need.</p>
+</div></section>
+<section class="section tight"><div class="wrap narrow">
+  <div class="card w-doc">
+    <h3>1. Get the category list</h3>
+    <p>Call this once when your page or app starts.</p>
+    <pre class="w-code">GET https://zk5740764-cmyk.github.io/Streamx-/categories/manifest.json</pre>
+    <h3>2. Get the videos of a category</h3>
+    <pre class="w-code">GET https://zk5740764-cmyk.github.io/Streamx-/categories/&lt;name&gt;.json</pre>
+    <p>Available names: <code>home</code> <code>recently_uploaded</code> <code>indian_pop_music</code> <code>haryanvi</code> <code>punjabi</code> <code>storytelling</code> <code>music</code> <code>gaming</code> <code>news</code> <code>sports</code> <code>fashion</code> <code>bollywood_movies</code> <code>hollywood_movies</code> <code>south_indian_movies</code> <code>punjabi_movies</code></p>
+    <h3>Video fields</h3>
+    <table>
+      <tr><th>Field</th><th>Meaning</th></tr>
+      <tr><td><code>title</code></td><td>Video title</td></tr>
+      <tr><td><code>url</code></td><td>YouTube link; the video ID is read from it</td></tr>
+      <tr><td><code>thumbnail</code></td><td>Preview image</td></tr>
+      <tr><td><code>channel</code></td><td>Channel name</td></tr>
+      <tr><td><code>duration</code></td><td>Video length</td></tr>
+    </table>
+    <h3>How to use it</h3>
+    <ol>
+      <li>Fetch <code>manifest.json</code> and show the names as tabs or a menu.</li>
+      <li>When a category is picked, fetch its <code>.json</code> file and draw the video cards.</li>
+      <li>On a website, play with the YouTube embed on an HTTPS page. In an Android app, play with ExoPlayer.</li>
+      <li>To update data, edit the JSON files in your GitHub repo and push. GitHub Pages updates in a few minutes.</li>
+    </ol>
+    <h3>Complete working example</h3>
+    <div class="w-codehead"><span>index.html</span><button class="w-copy">Copy</button></div>
+    <pre class="w-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+&lt;title&gt;My Video Site&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;select id="cat"&gt;&lt;/select&gt;
+&lt;div id="player"&gt;&lt;/div&gt;
+&lt;div id="list"&gt;&lt;/div&gt;
+&lt;script&gt;
+const BASE = "https://zk5740764-cmyk.github.io/Streamx-/categories/";
+const $ = id =&gt; document.getElementById(id);
+
+async function start() {
+  const m = await (await fetch(BASE + "manifest.json")).json();
+  const cats = m.categories || m.list || [];
+  $("cat").innerHTML = cats.map(c =&gt; {
+    const k = c.file || c.name || c.id;
+    return `&lt;option value="${k}"&gt;${k}&lt;/option&gt;`;
+  }).join("");
+  $("cat").onchange = () =&gt; loadCategory($("cat").value);
+  loadCategory($("cat").value);
+}
+
+async function loadCategory(key) {
+  const file = key.endsWith(".json") ? key : key + ".json";
+  const data = await (await fetch(BASE + file)).json();
+  const videos = Array.isArray(data) ? data : (data.videos || data.items || []);
+  $("list").innerHTML = "";
+  videos.forEach(v =&gt; {
+    const d = document.createElement("div");
+    d.innerHTML = `&lt;img src="${v.thumbnail}" width="160"&gt; ${v.title}`;
+    d.onclick = () =&gt; play(v);
+    $("list").appendChild(d);
+  });
+}
+
+function play(v) {
+  const u = new URL(v.url);
+  const id = u.hostname.includes("youtu.be") ? u.pathname.slice(1) : u.searchParams.get("v");
+  $("player").innerHTML = `&lt;iframe width="100%" height="315"
+    src="https://www.youtube.com/embed/${id}?autoplay=1"
+    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen&gt;&lt;/iframe&gt;`;
+}
+start();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+    <h3>Common problems</h3>
+    <table>
+      <tr><th>Problem</th><th>Fix</th></tr>
+      <tr><td>Error 153</td><td>Open the page from HTTPS (GitHub Pages), not as a local file</td></tr>
+      <tr><td>Empty list</td><td>Check the category name; it is lowercase with underscores</td></tr>
+      <tr><td>Old data shows</td><td>Wait a few minutes after pushing, then refresh</td></tr>
+    </table>
+  </div>
+  <div class="card w-doc w-codedocs" style="margin-top:20px">
+    <h3>Code for your platform</h3>
+    <div class="w-tabs"><button class="w-tab on" data-p="0">Flutter</button><button class="w-tab" data-p="1">Android</button><button class="w-tab" data-p="2">ExoPlayer</button><button class="w-tab" data-p="3">HTML</button><button class="w-tab" data-p="4">React Native</button></div>
+    <div class="w-pane on">
+    <h2>pubspec.yaml</h2>
+    <div class="block"><div class="block-head"><span>pubspec.yaml</span><button class="copy-btn">Copy</button></div><pre>dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.1.0
+  url_launcher: ^6.2.1</pre></div>
+
+    <h2>main.dart</h2>
+    <div class="block"><div class="block-head"><span>lib/main.dart</span><button class="copy-btn">Copy</button></div><pre>import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:url_launcher/url_launcher.dart';
+
+const BASE = "https://zk5740764-cmyk.github.io/Streamx-/categories";
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Streamx',
+      theme: ThemeData(primarySwatch: Colors.red),
+      home: CategoriesScreen(),
+    );
+  }
+}
+
+class StreamxAPI {
+  static Future&lt;List&gt; getCategories() async {
+    final res = await http.get(Uri.parse("$BASE/manifest.json"));
+    final data = jsonDecode(res.body);
+    return data["categories"];
+  }
+
+  static Future&lt;List&gt; getVideos(String fileName) async {
+    final res = await http.get(Uri.parse("$BASE/$fileName"));
+    return jsonDecode(res.body);
+  }
+}
+
+class CategoriesScreen extends StatefulWidget {
+  @override
+  _CategoriesScreenState createState() => _CategoriesScreenState();
+}
+
+class _CategoriesScreenState extends State&lt;CategoriesScreen&gt; {
+  List categories = [];
+  bool loading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    load();
+  }
+
+  Future&lt;void&gt; load() async {
+    final cats = await StreamxAPI.getCategories();
+    setState(() {
+      categories = cats;
+      loading = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (loading) return Scaffold(body: Center(child: CircularProgressIndicator()));
+    return Scaffold(
+      appBar: AppBar(title: Text("Streamx")),
+      body: ListView.builder(
+        itemCount: categories.length,
+        itemBuilder: (ctx, i) {
+          final cat = categories[i];
+          return ListTile(
+            title: Text(cat["name"]),
+            subtitle: Text("${cat["count"]} videos"),
+            onTap: () => Navigator.push(context, MaterialPageRoute(
+              builder: (_) => VideosScreen(file: cat["file"], title: cat["name"]),
+            )),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class VideosScreen extends StatefulWidget {
+  final String file;
+  final String title;
+  VideosScreen({required this.file, required this.title});
+
+  @override
+  _VideosScreenState createState() => _VideosScreenState();
+}
+
+class _VideosScreenState extends State&lt;VideosScreen&gt; {
+  List videos = [];
+  bool loading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    load();
+  }
+
+  Future&lt;void&gt; load() async {
+    final vids = await StreamxAPI.getVideos(widget.file);
+    setState(() {
+      videos = vids;
+      loading = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (loading) return Scaffold(body: Center(child: CircularProgressIndicator()));
+    return Scaffold(
+      appBar: AppBar(title: Text(widget.title)),
+      body: ListView.builder(
+        itemCount: videos.length,
+        itemBuilder: (ctx, i) {
+          final v = videos[i];
+          return ListTile(
+            leading: Image.network(v["thumbnail"], width: 80, fit: BoxFit.cover),
+            title: Text(v["title"], maxLines: 2),
+            subtitle: Text(v["channel"] ?? ""),
+            onTap: () async {
+              final url = Uri.parse(v["url"]);
+              if (await canLaunchUrl(url)) {
+                await launchUrl(url, mode: LaunchMode.externalApplication);
+              }
+            },
+          );
+        },
+      ),
+    );
+  }
+}</pre></div></div><div class="w-pane">
+    <h2>AndroidManifest.xml</h2>
+    <div class="block"><div class="block-head"><span>AndroidManifest.xml</span><button class="copy-btn">Copy</button></div><pre>&lt;uses-permission android:name="android.permission.INTERNET" /&gt;</pre></div>
+
+    <h2>build.gradle</h2>
+    <div class="block"><div class="block-head"><span>app/build.gradle</span><button class="copy-btn">Copy</button></div><pre>dependencies {
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
+}</pre></div>
+
+    <h2>MainActivity.kt</h2>
+    <div class="block"><div class="block-head"><span>MainActivity.kt</span><button class="copy-btn">Copy</button></div><pre>package com.example.streamx
+
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.coroutines.*
+import org.json.JSONArray
+import org.json.JSONObject
+import java.net.URL
+
+class MainActivity : AppCompatActivity() {
+
+    private val BASE = "https://zk5740764-cmyk.github.io/Streamx-/categories"
+    private lateinit var categoriesList: ListView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        categoriesList = findViewById(R.id.categoriesList)
+        loadCategories()
+    }
+
+    private fun loadCategories() {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val json = URL("$BASE/manifest.json").readText()
+                val data = JSONObject(json)
+                val categories = data.getJSONArray("categories")
+
+                val names = ArrayList&lt;String&gt;()
+                for (i in 0 until categories.length()) {
+                    val cat = categories.getJSONObject(i)
+                    names.add("${cat.getString("name")} (${cat.getInt("count")})")
+                }
+
+                runOnUiThread {
+                    categoriesList.adapter = ArrayAdapter(
+                        this@MainActivity,
+                        android.R.layout.simple_list_item_1,
+                        names
+                    )
+                    categoriesList.setOnItemClickListener { _, _, pos, _ ->
+                        val cat = categories.getJSONObject(pos)
+                        loadVideos(cat.getString("file"))
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    private fun loadVideos(fileName: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val json = URL("$BASE/$fileName").readText()
+                val videos = JSONArray(json)
+
+                val titles = ArrayList&lt;String&gt;()
+                val urls = ArrayList&lt;String&gt;()
+                for (i in 0 until videos.length()) {
+                    val v = videos.getJSONObject(i)
+                    titles.add(v.getString("title"))
+                    urls.add(v.getString("url"))
+                }
+
+                runOnUiThread {
+                    categoriesList.adapter = ArrayAdapter(
+                        this@MainActivity,
+                        android.R.layout.simple_list_item_1,
+                        titles
+                    )
+                    categoriesList.setOnItemClickListener { _, _, pos, _ ->
+                        playVideo(urls[pos])
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    private fun playVideo(url: String) {
+        startActivity(Intent(this, PlayerActivity::class.java).putExtra("url", url))
+    }
+}</pre></div></div><div class="w-pane">
+    <h2>Why Error 153 happens</h2>
+    <p>The YouTube embed refuses to start when the page sends no referrer: the HTML is opened as a local file, or an Android WebView loads it with <code>loadData()</code>. Hosting on HTTPS fixes the web demo. In the app, skip the embed and play with ExoPlayer.</p>
+    <h2>How ExoPlayer plays YouTube</h2>
+    <p>ExoPlayer cannot open a <code>youtube.com/watch</code> link. It needs a direct stream URL, so NewPipeExtractor converts the link first.</p>
+    <div class="steps">
+      <div class="step"><b>1</b><div><strong>Add dependencies</strong><p>Media3 ExoPlayer, NewPipeExtractor, OkHttp, desugaring</p></div></div>
+      <div class="step"><b>2</b><div><strong>Resolve the url field</strong><p>StreamInfo.getInfo() returns video and audio stream URLs</p></div></div>
+      <div class="step"><b>3</b><div><strong>Play</strong><p>Merge video and audio in ExoPlayer, show it in PlayerView</p></div></div>
+    </div>
+    <h2>build.gradle</h2>
+    <div class="block"><div class="block-head"><span>Gradle</span><button class="copy-btn">Copy</button></div><pre>// settings.gradle -&gt; repositories { maven { url 'https://jitpack.io' } }
+// app/build.gradle
+android { compileOptions { coreLibraryDesugaringEnabled true } }
+dependencies {
+    implementation 'androidx.media3:media3-exoplayer:1.3.1'
+    implementation 'androidx.media3:media3-ui:1.3.1'
+    implementation 'com.github.TeamNewPipe:NewPipeExtractor:v0.24.2'
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
+}</pre></div>
+    <h2>NewPipeDownloader.kt</h2>
+    <div class="block"><div class="block-head"><span>NewPipeDownloader.kt</span><button class="copy-btn">Copy</button></div><pre>import okhttp3.OkHttpClient
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.schabi.newpipe.extractor.downloader.*
+
+class NewPipeDownloader : Downloader() {
+    private val client = OkHttpClient()
+    override fun execute(request: Request): Response {
+        val body = request.dataToSend()?.toRequestBody()
+        val b = okhttp3.Request.Builder().url(request.url()).method(request.httpMethod(), body)
+        request.headers().forEach { (k, v) -&gt; b.removeHeader(k); v.forEach { b.addHeader(k, it) } }
+        client.newCall(b.build()).execute().use { r -&gt;
+            return Response(r.code, r.message, r.headers.toMultimap(), r.body?.string(), r.request.url.toString())
+        }
+    }
+}</pre></div>
+    <h2>PlayerActivity.kt</h2>
+    <div class="block"><div class="block-head"><span>PlayerActivity.kt</span><button class="copy-btn">Copy</button></div><pre>import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import androidx.media3.common.MediaItem
+import androidx.media3.datasource.DefaultHttpDataSource
+import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.source.MergingMediaSource
+import androidx.media3.exoplayer.source.ProgressiveMediaSource
+import androidx.media3.ui.PlayerView
+import kotlinx.coroutines.*
+import org.schabi.newpipe.extractor.NewPipe
+import org.schabi.newpipe.extractor.ServiceList
+import org.schabi.newpipe.extractor.stream.StreamInfo
+
+class PlayerActivity : AppCompatActivity() {
+    private var player: ExoPlayer? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val view = PlayerView(this)
+        setContentView(view)
+        val url = intent.getStringExtra("url") ?: return finish()
+
+        lifecycleScope.launch {
+            try {
+                // 1) Resolve the YouTube link into direct stream URLs (off the main thread)
+                val (video, audio) = withContext(Dispatchers.IO) {
+                    NewPipe.init(NewPipeDownloader())
+                    val info = StreamInfo.getInfo(ServiceList.YouTube, url)
+                    // Best HD: video-only + audio, merged. Simple option: info.videoStreams (up to 720p, has audio)
+                    val v = info.videoOnlyStreams.maxByOrNull { it.height }
+                    val a = info.audioStreams.maxByOrNull { it.averageBitrate }
+                    if (v != null &amp;&amp; a != null) v.content to a.content
+                    else info.videoStreams.maxByOrNull { it.height }!!.content to null
+                }
+                // 2) Build the ExoPlayer media source
+                val factory = DefaultHttpDataSource.Factory().setUserAgent("Mozilla/5.0")
+                val vSrc = ProgressiveMediaSource.Factory(factory).createMediaSource(MediaItem.fromUri(video))
+                val source = if (audio != null)
+                    MergingMediaSource(vSrc, ProgressiveMediaSource.Factory(factory).createMediaSource(MediaItem.fromUri(audio)))
+                else vSrc
+                // 3) Play
+                player = ExoPlayer.Builder(this@PlayerActivity).build().also {
+                    view.player = it
+                    it.setMediaSource(source)
+                    it.prepare()
+                    it.playWhenReady = true
+                }
+            } catch (e: Exception) {
+                Toast.makeText(this@PlayerActivity, "Could not play: ${e.message}", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+
+    override fun onDestroy() { player?.release(); super.onDestroy() }
+}</pre></div>
+    <h2>Play from this web page with ExoPlayer</h2><p>A browser cannot run ExoPlayer. But when this page is opened inside your app's WebView, tapping a video calls the app and ExoPlayer plays it. In a normal browser the page falls back to the YouTube embed.</p><div class="block"><div class="block-head"><span>WebActivity.kt</span><button class="copy-btn">Copy</button></div><pre>import android.content.Intent
+import android.os.Bundle
+import android.webkit.JavascriptInterface
+import android.webkit.WebView
+import androidx.appcompat.app.AppCompatActivity
+
+class WebActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val web = WebView(this)
+        setContentView(web)
+        web.settings.javaScriptEnabled = true
+        web.settings.domStorageEnabled = true
+        // The page calls AndroidPlayer.play(url) -&gt; ExoPlayer opens
+        web.addJavascriptInterface(object {
+            @JavascriptInterface
+            fun play(url: String) {
+                startActivity(Intent(this@WebActivity, PlayerActivity::class.java).putExtra("url", url))
+            }
+        }, "AndroidPlayer")
+        web.loadUrl("https://YOUR-USERNAME.github.io/StreamX_API_v2.html")
+    }
+}</pre></div><p>Add <code>&lt;activity android:name=".PlayerActivity" /&gt;</code> to AndroidManifest.xml. Stream URLs expire after a few hours, so resolve on every play. If your project already has these libraries, keep your versions; on older NewPipeExtractor, <code>content</code> is <code>url</code>.</p></div><div class="w-pane">
+    <h2>index.html</h2>
+    <div class="block"><div class="block-head"><span>index.html</span><button class="copy-btn">Copy</button></div><pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Streamx&lt;/title&gt;
+  &lt;style&gt;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #111; color: #fff; }
+    header { background: #e50914; padding: 15px; font-size: 22px; font-weight: bold; }
+    .container { padding: 15px; }
+    .category {
+      padding: 15px; margin: 10px 0; background: #222;
+      border-radius: 8px; cursor: pointer; display: flex;
+      justify-content: space-between;
+    }
+    .category:hover { background: #333; }
+    .video {
+      display: flex; gap: 10px; padding: 10px;
+      border-bottom: 1px solid #333; cursor: pointer;
+    }
+    .video:hover { background: #222; }
+    .video img { width: 120px; height: 68px; object-fit: cover; border-radius: 5px; }
+    .video-info { flex: 1; }
+    .video-info b { display: block; margin-bottom: 5px; }
+    .video-info small { color: #aaa; }
+    .back { background: #333; padding: 10px 15px; margin-bottom: 10px;
+            border: none; color: white; cursor: pointer; border-radius: 5px; }
+    .loader { text-align: center; padding: 30px; color: #aaa; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;Streamx&lt;/header&gt;
+  &lt;div class="container" id="app"&gt;
+    &lt;div class="loader"&gt;Loading...&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    const BASE = "https://zk5740764-cmyk.github.io/Streamx-/categories";
+    const app = document.getElementById("app");
+
+    async function loadCategories() {
+      app.innerHTML = '&lt;div class="loader"&gt;Loading categories...&lt;/div&gt;';
+      try {
+        const res = await fetch(`${BASE}/manifest.json`);
+        const data = await res.json();
+        app.innerHTML = "";
+        data.categories.forEach(cat => {
+          const div = document.createElement("div");
+          div.className = "category";
+          div.innerHTML = `&lt;span&gt;&lt;b&gt;${cat.name}&lt;/b&gt;&lt;/span&gt;&lt;span&gt;${cat.count} videos&lt;/span&gt;`;
+          div.onclick = () => loadVideos(cat.file, cat.name);
+          app.appendChild(div);
+        });
+      } catch (e) {
+        app.innerHTML = `&lt;div class="loader"&gt;Error: ${e.message}&lt;/div&gt;`;
+      }
+    }
+
+    async function loadVideos(fileName, title) {
+      app.innerHTML = '&lt;div class="loader"&gt;Loading videos...&lt;/div&gt;';
+      try {
+        const res = await fetch(`${BASE}/${fileName}`);
+        const videos = await res.json();
+        app.innerHTML = `&lt;button class="back" onclick="loadCategories()"&gt;&amp;larr; Back&lt;/button&gt;`;
+        videos.forEach(v => {
+          const div = document.createElement("div");
+          div.className = "video";
+          div.innerHTML = `
+            &lt;img src="${v.thumbnail}" loading="lazy"&gt;
+            &lt;div class="video-info"&gt;
+              &lt;b&gt;${v.title}&lt;/b&gt;
+              &lt;small&gt;${v.channel || ""}&lt;/small&gt;
+            &lt;/div&gt;
+          `;
+          div.onclick = () => { window.open(v.url, "_blank"); };
+          app.appendChild(div);
+        });
+      } catch (e) {
+        app.innerHTML = `&lt;div class="loader"&gt;Error: ${e.message}&lt;/div&gt;`;
+      }
+    }
+
+    loadCategories();
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre></div></div><div class="w-pane">
+    <h2>App.js</h2>
+    <div class="block"><div class="block-head"><span>App.js</span><button class="copy-btn">Copy</button></div><pre>import React, { useState, useEffect } from 'react';
+import { View, Text, FlatList, Image, TouchableOpacity, ActivityIndicator, Linking, StyleSheet } from 'react-native';
+
+const BASE = "https://zk5740764-cmyk.github.io/Streamx-/categories";
+
+export default function App() {
+  const [categories, setCategories] = useState([]);
+  const [videos, setVideos] = useState([]);
+  const [currentFile, setCurrentFile] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`${BASE}/manifest.json`)
+      .then(r => r.json())
+      .then(data => {
+        setCategories(data.categories);
+        setLoading(false);
+      });
+  }, []);
+
+  const loadVideos = (fileName) => {
+    setLoading(true);
+    fetch(`${BASE}/${fileName}`)
+      .then(r => r.json())
+      .then(data => {
+        setVideos(data);
+        setCurrentFile(fileName);
+        setLoading(false);
+      });
+  };
+
+  if (loading) return &lt;ActivityIndicator size="large" style={{ flex: 1 }} /&gt;;
+
+  if (currentFile) {
+    return (
+      &lt;View style={{ flex: 1, padding: 10 }}&gt;
+        &lt;TouchableOpacity onPress={() => { setCurrentFile(null); setVideos([]); }}&gt;
+          &lt;Text style={{ fontSize: 18, marginBottom: 10 }}&gt;&amp;larr; Back&lt;/Text&gt;
+        &lt;/TouchableOpacity&gt;
+        &lt;FlatList
+          data={videos}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => (
+            &lt;TouchableOpacity
+              onPress={() => Linking.openURL(item.url)}
+              style={styles.video}
+            &gt;
+              &lt;Image source={{ uri: item.thumbnail }} style={styles.thumb} /&gt;
+              &lt;View style={{ flex: 1 }}&gt;
+                &lt;Text numberOfLines={2}&gt;{item.title}&lt;/Text&gt;
+                &lt;Text style={{ color: '#888' }}&gt;{item.channel}&lt;/Text&gt;
+              &lt;/View&gt;
+            &lt;/TouchableOpacity&gt;
+          )}
+        /&gt;
+      &lt;/View&gt;
+    );
+  }
+
+  return (
+    &lt;FlatList
+      data={categories}
+      keyExtractor={item => item.name}
+      renderItem={({ item }) => (
+        &lt;TouchableOpacity onPress={() => loadVideos(item.file)} style={styles.cat}&gt;
+          &lt;Text style={{ fontSize: 18 }}&gt;{item.name}&lt;/Text&gt;
+          &lt;Text style={{ color: '#888' }}&gt;{item.count} videos&lt;/Text&gt;
+        &lt;/TouchableOpacity&gt;
+      )}
+    /&gt;
+  );
+}
+
+const styles = StyleSheet.create({
+  cat: { padding: 20, borderBottomWidth: 1, borderColor: '#eee' },
+  video: { flexDirection: 'row', padding: 10, borderBottomWidth: 1, borderColor: '#eee' },
+  thumb: { width: 120, height: 68, marginRight: 10, borderRadius: 5 }
+});</pre></div></div>
+  </div>
+</div></section>
 </div>
 <div id="download" class="page-block">
 
 <section class="page-hero"><div class="wrap">
   <span class="eyebrow reveal">Download</span>
   <h2 class="reveal">Get StreamX for Android</h2>
-  <p class="lead reveal">Version 1.13 &middot; Free &middot; Android 7.0 and above</p>
+  <p class="lead reveal">Version 1.17 &middot; Free &middot; Android 7.0 and above</p>
 </div></section>
 <section class="section tight"><div class="wrap">
   <div class="dl-card reveal">
-    <div class="dl-left"><div class="dl-logo"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div><h2>StreamX 1.13</h2><p class="muted">Official APK &middot; GitHub release V1.13</p></div></div>
-    <div class="dl-right"><a class="btn btn-lg" href="https://github.com/zk5740764-cmyk/NeonPlayer-/releases/download/V1.13/StreamX_1.13.apk"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download APK</a><a class="link" href="https://github.com/zk5740764-cmyk/NeonPlayer-/releases" target="_blank" rel="noopener">Older versions &amp; release notes</a></div>
+    <div class="dl-left"><div class="dl-logo"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div><h2>StreamX 1.17</h2><p class="muted">Official APK &middot; GitHub release V1.17</p></div></div>
+    <div class="dl-right"><a class="btn btn-lg" href="https://github.com/zk5740764-cmyk/NeonPlayer-/releases/download/V1.17/StreamX_1.17.apk"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download APK</a><a class="link" href="https://github.com/zk5740764-cmyk/NeonPlayer-/releases" target="_blank" rel="noopener">Older versions &amp; release notes</a></div>
   </div>
   <div class="req reveal"><span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Android 7.0+</span><span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Internet for streaming</span><span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Works offline for downloads</span></div>
 </div></section>
@@ -367,7 +1109,7 @@ html{scroll-padding-top:84px}
 </div></section>
 <section class="cta-band reveal"><div class="wrap cta-inner">
 <div><h2>Ready to try StreamX?</h2><p>Free APK for Android 7.0 and above. Download, install and start watching in under a minute.</p></div>
-<div class="cta-btns"><a class="btn btn-lg" href="https://github.com/zk5740764-cmyk/NeonPlayer-/releases/download/V1.13/StreamX_1.13.apk"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download StreamX 1.13</a><a class="btn btn-ghost btn-lg" href="#download">Install guide</a></div>
+<div class="cta-btns"><a class="btn btn-lg" href="https://github.com/zk5740764-cmyk/NeonPlayer-/releases/download/V1.17/StreamX_1.17.apk"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download StreamX 1.17</a><a class="btn btn-ghost btn-lg" href="#download">Install guide</a></div>
 </div></section>
 
 </div>
@@ -384,8 +1126,10 @@ html{scroll-padding-top:84px}
           <a href="https://github.com/zk5740764-cmyk/NeonPlayer-/releases" target="_blank" rel="noopener" aria-label="GitHub releases"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
         </div>
       </div>
-      <div><h4>Explore</h4><a href="#features">Features</a><a href="#screenshots">Screenshots</a><a href="#download">Download</a><a href="#about">About &amp; Community</a></div>
-      <div><h4>Get StreamX</h4><a href="https://github.com/zk5740764-cmyk/NeonPlayer-/releases/download/V1.13/StreamX_1.13.apk">StreamX 1.13 APK</a><a href="https://github.com/zk5740764-cmyk/NeonPlayer-/releases" target="_blank" rel="noopener">All releases</a><a href="https://www.instagram.com/rafiqat.khatana" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/share/g/1Dve8weYNz/" target="_blank" rel="noopener">Facebook group</a></div>
+      <div><h4>Explore</h4><a href="#features">Features</a><a href="#screenshots">Screenshots</a>
+<a href="#watch">Watch</a>
+<a href="#api">API</a><a href="#download">Download</a><a href="#about">About &amp; Community</a></div>
+      <div><h4>Get StreamX</h4><a href="https://github.com/zk5740764-cmyk/NeonPlayer-/releases/download/V1.17/StreamX_1.17.apk">StreamX 1.17 APK</a><a href="https://github.com/zk5740764-cmyk/NeonPlayer-/releases" target="_blank" rel="noopener">All releases</a><a href="https://www.instagram.com/rafiqat.khatana" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/share/g/1Dve8weYNz/" target="_blank" rel="noopener">Facebook group</a></div>
     </div>
     <p class="legal">StreamX is an independent app by SoulReaper8 and is not affiliated with, endorsed by or sponsored by YouTube, Google, Instagram, Facebook or X. All trademarks and content belong to their owners. Please download and save only content you have the right to use.</p>
     <p class="legal">&copy; <span id="year">2026</span> StreamX &middot; Made by SoulReaper8</p>
@@ -459,6 +1203,75 @@ document.querySelectorAll("img[data-img]").forEach(function(i){i.src=IMGS[i.data
     links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+cur)});
   }
   window.addEventListener('scroll',spy,{passive:true});spy();
+})();
+
+// watch demo (StreamX API)
+(function(){
+var MANIFEST="https://zk5740764-cmyk.github.io/Streamx-/categories/manifest.json",BASE="https://zk5740764-cmyk.github.io/Streamx-/categories/";
+var $=function(i){return document.getElementById(i)};
+var esc=function(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})};
+var COL=["#8b5cf6","#22d3ee","#f472b6","#f59e0b","#10b981","#ef4444","#3b82f6","#ec4899"];
+var col=function(t){var n=0;String(t||"?").split("").forEach(function(c){n+=c.charCodeAt(0)});return COL[n%COL.length]};
+var av=function(n){return '<span class="w-av" style="background:'+col(n)+'">'+esc((n||"?").trim().charAt(0).toUpperCase())+'</span>'};
+var native=!!(window.AndroidPlayer&&window.AndroidPlayer.play),cats=[],cur=[];
+function go(w){$("wList").hidden=w==="Play";$("wWatch").hidden=w!=="Play";if(w!=="Play")$("wPlayer").innerHTML="";$("watch").scrollIntoView({behavior:"smooth"})}
+$("wBack").onclick=function(){go("Home")};
+function vid(u){try{var x=new URL(u);if(x.hostname.indexOf("youtu.be")>-1)return x.pathname.slice(1);var p=x.pathname.match(/\/(shorts|embed)\/([^/?]+)/);return p?p[2]:x.searchParams.get("v")}catch(e){return null}}
+function hero(v){var h=$("wHero");if(!v){h.style.display="none";return}h.style.display="block";
+  h.innerHTML='<img src="'+esc(v.thumbnail)+'" alt=""><div class="w-hs"><span class="w-tag">FEATURED</span><h3>'+esc(v.title)+'</h3><p>'+esc(v.channel||"")+'</p><span class="btn btn-sm">&#9654; Watch now</span></div>';h.onclick=function(){play(v)}}
+function grid(arr){var g=$("wGrid");g.innerHTML="";if(!arr.length){g.innerHTML='<div class="w-msg">No videos found.</div>';return}
+  arr.forEach(function(v){var el=document.createElement("div");el.className="w-card";
+    el.innerHTML='<div class="w-th"><img src="'+esc(v.thumbnail)+'" alt="" loading="lazy">'+(v.duration?'<span class="w-dur">'+esc(v.duration)+'</span>':"")+'</div><div class="w-row">'+av(v.channel)+'<div><b>'+esc(v.title||"Untitled")+'</b><span>'+esc(v.channel||"")+'</span></div></div>';
+    el.onclick=function(){play(v)};g.appendChild(el)})}
+function load(key){$("wq").value="";$("wGrid").innerHTML='<div class="w-sk"></div>'.repeat(6);
+  fetch(BASE+(key.slice(-5)===".json"?key:key+".json")).then(function(r){return r.json()}).then(function(d){
+    cur=Array.isArray(d)?d:(d.videos||d.items||[]);hero(cur[0]);grid(cur.slice(1))
+  }).catch(function(){$("wGrid").innerHTML='<div class="w-msg">Could not load videos. Please try again.</div>'})}
+$("wq").oninput=function(e){var t=e.target.value.toLowerCase();$("wList").hidden=false;$("wWatch").hidden=true;
+  if(!t){hero(cur[0]);grid(cur.slice(1));return}
+  $("wHero").style.display="none";grid(cur.filter(function(v){return((v.title||"")+" "+(v.channel||"")).toLowerCase().indexOf(t)>-1}))};
+function play(v){var id=vid(v.url),box=$("wPlayer");
+  $("wTitle").textContent=v.title||"";$("wAvBox").innerHTML=av(v.channel);$("wMeta").textContent=v.channel||"";
+  if(!id&&!native){box.innerHTML='<div class="w-msg">This video cannot be embedded.</div>'}
+  else{box.innerHTML='<div class="w-player"><img src="'+esc(v.thumbnail)+'" alt=""><button class="w-play" id="wGo" aria-label="Play">&#9654;</button></div>';
+    $("wGo").onclick=function(){
+      if(native){window.AndroidPlayer.play(v.url);return}
+      var o=/^https?:$/.test(location.protocol)?"&origin="+encodeURIComponent(location.origin):"";
+      box.innerHTML='<div class="w-player"><iframe src="https://www.youtube.com/embed/'+encodeURIComponent(id)+'?autoplay=1&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3'+o+'" title="Video player" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>'};
+    if(native)window.AndroidPlayer.play(v.url)}
+  var n=$("wNext");n.innerHTML="";
+  cur.filter(function(x){return x!==v}).slice(0,10).forEach(function(x){var el=document.createElement("div");el.className="w-vid";
+    el.innerHTML='<div class="w-th"><img src="'+esc(x.thumbnail)+'" alt="" loading="lazy"></div><div><b>'+esc(x.title||"")+'</b><br><span>'+esc(x.channel||"")+'</span></div>';
+    el.onclick=function(){play(x)};n.appendChild(el)});
+  go("Play")}
+fetch(MANIFEST).then(function(r){return r.json()}).then(function(d){
+  cats=d.categories||d.list||Object.keys(d).map(function(k){return{name:k}});
+  $("wStat").innerHTML='<i class="w-dot"></i>API online &middot; '+cats.length+' categories';
+  var box=$("wChips");cats.forEach(function(c,i){var name=(c.name||c.id||"").replace(/_/g," "),b=document.createElement("button");
+    b.className="w-chip";b.innerHTML=esc(name)+(c.count!=null?" <small>"+esc(c.count)+"</small>":"");b.onclick=function(){[].forEach.call(box.children,function(x){x.classList.remove("on")});b.classList.add("on");load(c.file||c.name||c.id)};
+    box.appendChild(b);if(i===0)b.click()});
+}).catch(function(){$("wStat").innerHTML='<i class="w-dot off"></i>API offline';$("wGrid").innerHTML='<div class="w-msg">Could not load categories. Check your internet.</div>'});
+document.querySelectorAll(".w-copy").forEach(function(b){b.onclick=function(){
+  var t=b.parentNode.nextElementSibling.textContent;
+  try{navigator.clipboard.writeText(t).then(function(){b.textContent="Copied";setTimeout(function(){b.textContent="Copy"},1500)})}catch(e){}}});
+})();
+
+// theme toggle + code tabs
+(function(){
+var root=document.documentElement;
+try{var t=localStorage.getItem("sx-theme");if(t)root.setAttribute("data-theme",t)}catch(e){}
+document.getElementById("wTheme").onclick=function(){
+  var light=root.getAttribute("data-theme")==="light";
+  root.setAttribute("data-theme",light?"dark":"light");
+  try{localStorage.setItem("sx-theme",light?"dark":"light")}catch(e){}
+};
+var tabs=document.querySelectorAll(".w-tab"),panes=document.querySelectorAll(".w-pane");
+tabs.forEach(function(b){b.onclick=function(){
+  tabs.forEach(function(x){x.classList.toggle("on",x===b)});
+  panes.forEach(function(p,i){p.classList.toggle("on",i==b.dataset.p)})}});
+document.querySelectorAll(".w-codedocs .copy-btn").forEach(function(b){b.onclick=function(){
+  var pre=b.closest(".block").querySelector("pre");
+  try{navigator.clipboard.writeText(pre.textContent).then(function(){b.textContent="Copied";setTimeout(function(){b.textContent="Copy"},1500)})}catch(e){}}});
 })();
 </script>
 </body>
